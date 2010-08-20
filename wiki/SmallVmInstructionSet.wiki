@@ -1,3 +1,4 @@
+#summary An explanation of the assembly language for the SmallVM runtime.
 The VM takes a string as an input, which represents code in a special assembly language. 
 
 This assembly code has elements of 3 types:
