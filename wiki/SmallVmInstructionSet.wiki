@@ -1,0 +1,18 @@
+The VM takes a string as an input, which represents code in a special assembly language. 
+
+This assembly code has elements of 3 types:
+ * Instructions
+ * Class definitions
+ * Method definitions (the term _method_ here means both normal functions and class member functions).
+
+= Instructions =
+An instruction is always on one line. It takes this form:
+
+`label: opcode args @tag`
+
+The _label_ and _tag_ parts are optional, and the arguments vary according to the specific instruction.
+
+For example:
+ * `pushv 12`
+ * `poplocal x@14543`
+ * `top: add`
