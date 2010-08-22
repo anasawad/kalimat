@@ -87,9 +87,33 @@ _Stack after_
 
 Pops an integer or double value from the operand stack and pushes back its negative.
 
-and or not
+`and`
 
-gt ge lt le eq ne
+Pops two integers from the operand stack, performs an *and* operation, and pushes the 
+result. (Assumes 1 is true and 0 is false).
+
+`or`
+
+Pops two integers from the operand stack, performs an *or* operation, and pushes the result. (Assumes 1 is true and 0 is false).
+
+`not`
+
+Pops an integer from the operand stack and pushes back it's negation. (Assumes 1 is true and 0 is false).
+
+`gt`
+
+`ge`
+
+`lt`
+
+`le`
+
+Pops two integer, double or string values from the operand stack and pushes the result of the comparison (in order: >, >=, <, <=). The result is the boolean 0 or 1. If the two operands are a mix of integer and double the integer is first coerced into double.
+
+`eq`
+
+`ne`
+
 == Control flow ==
 if jmp nop
 == Method calls and event handling ==
