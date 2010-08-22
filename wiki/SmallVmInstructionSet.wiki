@@ -17,3 +17,32 @@ For example:
  * `pushv 12`
  * `poplocal x@14543`
  * `top: add`
+
+== Dealing with variables and values ==
+
+pushl popl
+
+pushg popg
+
+pushc
+
+pushv
+
+pushnull
+
+== Arithmetic & Logic instructions ==
+add sub mul div neg
+
+and or not
+
+gt ge lt le eq ne
+== Control flow ==
+if jmp nop
+== Method calls and event handling ==
+call ret callex callm regev
+== Arrays ==
+newarr arrlength getarr setarr
+
+newmdarr getmdarr setmdarr mdarrdimensions
+== Objects ==
+new getfld setfld callm
