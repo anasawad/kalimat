@@ -15,23 +15,77 @@ The _label_ and _tag_ parts are optional, and the arguments vary according to th
 
 For example:
  * `pushv 12`
- * `poplocal x@14543`
+ * `popl x@14543`
  * `top: add`
 
 == Dealing with variables and values ==
 
-pushl popl
+`pushl` _symbol_
 
-pushg popg
+Pushes the value of the local variable denoted by _symbol_ on the operand stack.
 
-pushc
+`popl` _symbol_
 
-pushv
+Pops a value from the operand stack and assigns this value to the local variable denoted by _symbol_
 
-pushnull
+`pushg` _symbol_
+
+Pushes the value of the *global* variable denoted by _symbol_ on the operand stack.
+
+`popg` _symbol_
+
+Pops a value from the operand stack and assigns this value to the *global* variable denoted by _symbol_
+
+`pushc` _symbol_
+
+Locates the value identified by _symbol_ in the constant pool and pushes that value on the operand stack.
+
+`pushv` _arg_
+
+Pushes the given value _arg_ on the operand stack.
+
+`pushnull`
+
+Pushes the null reference on the operand stack.
 
 == Arithmetic & Logic instructions ==
-add sub mul div neg
+`add`
+
+Pops two integer, double or string values from the operand stack, add them together, and 
+pushes the result. If an integer and a double value are added, the integer will be coerced to double before addition
+
+`sub`
+
+Pops two integer or double values from the operand stack, subtracts the second from the first and pushes the result. If an integer and a double value are subtracted, the integer will be coerced to double before subtraction.
+
+_Stack before:_
+
+`... n1 n2`
+
+_Stack after_
+
+`... (n1 - n2)`
+
+`mul`
+
+Pops two integer or double values from the operand stack, multiplies them together and pushes the result. If an integer and a double value are multiplied, the integer will be coerced to double before multiplication.
+
+
+`div`
+
+Pops two integer or double values from the operand stack, divides the first by the second and pushes the result. If an integer and a double value are divided, the integer will be coerced to double before division. Signals an error if the divisor is zero.
+
+_Stack before:_
+
+`... n1 n2`
+
+_Stack after_
+
+`... (n1 ÷ n2)`
+
+`neg`
+
+Pops an integer or double value from the operand stack and pushes back its negative.
 
 and or not
 
