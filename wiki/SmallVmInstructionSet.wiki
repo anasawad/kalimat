@@ -115,9 +115,23 @@ Pops two integer, double or string values from the operand stack and pushes the 
 `ne`
 
 == Control flow ==
-if jmp nop
+`if` _tLabel_, _fLabel_
+
+Pops an integer value from the stack. If the value is zero execution will jump to the label _fLabel_, otherwise it will jump to _tLabel_.
+
+`jmp` _lbl_
+
+Unconditionally transfers execution to the label _lbl_.
+
+`nop`
+
+Does nothing.
 == Method calls and event handling ==
-call ret callex callm regev
+`call` _symbol_ _`[`,arity`]`_
+
+
+
+ret callex callm regev
 == Arrays ==
 newarr arrlength getarr setarr
 
