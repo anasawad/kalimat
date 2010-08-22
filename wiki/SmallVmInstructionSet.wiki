@@ -135,9 +135,9 @@ Method call works like this:
  # The number of parameters (arity) is determined from the method
  # If the (optional) _arity_ argument is specified in the instruction, the method's actual arity is verified against the given arity.
  # The method arguments are popped from the operand stack, they are assumed to be pushed in reverse order:
-  * ... arg_n arg_n-1 .. arg2 arg1`
+  * `... arg_n arg_n-1 .. arg2 arg1`
  # A new frame is created for executing the new method
- # The parameters are copied to the new frame's operand stack. They are popped in correct order:
+ # The parameters are copied to the new frame's operand stack. They are laid out so that the method pops its arguments in correct order:
   * `... arg_n arg_n-1 .. arg2 arg1`
  # Execution of the new function begins.
 
