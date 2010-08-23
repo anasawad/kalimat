@@ -172,4 +172,31 @@ Method call works like this:
 
 `setfld`
 
+
 `callm`
+= Method definitions =
+
+A method definition follows the following template:
+
+`.method` _name_ _arity_ _numReturnValues_
+     _<instruction 1>_
+     _<instruction 2>_
+     .....
+`.endmethod`
+
+This will define a method object and store it in the constant pool under the key _name_.
+The _arity_ and _numReturnValues_ parts are optional. If a single number is provided it is considered the method's arity. The default arity is ... and the default number of return values is ...
+
+= Class definitions =
+
+A class definition follows the following template:
+
+`.class` _name_
+    `field` _fieldName1_
+    `field` _fieldName2_
+    ....
+    .method _methodName1_ _arity1_ _numReturnValues1_
+        _<instructions...>_
+    .endmethod
+    ....
+`.endclass`
