@@ -38,7 +38,7 @@ Pops a value from the operand stack and assigns this value to the *global* varia
 
 `pushc` _symbol_
 
-Locates the value identified by _symbol_ in the constant pool and pushes that value on the operand stack.
+Locates the value identified by _symbol_ in the [SmallVmOverview#The_constant_pool constant pool] and pushes that value on the operand stack.
 
 `pushv` _arg_
 
