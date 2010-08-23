@@ -150,8 +150,26 @@ Method call works like this:
 `regev`
 
 == Arrays ==
-newarr arrlength getarr setarr
+`newarr`
 
-newmdarr getmdarr setmdarr mdarrdimensions
+`getarr`
+
+`setarr`
+
+`arrlength`
+
+`newmdarr`
+
+`getmdarr`
+
+`setmdarr`
+
+`mdarrdimensions`
 == Objects ==
-new getfld setfld callm
+`new`
+
+`getfld`
+
+`setfld`
+
+`callm`
