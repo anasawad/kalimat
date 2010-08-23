@@ -1,0 +1,31 @@
+#summary Overview of the SmallVM runtime, which is used to run Kalimat programs.
+
+= Role of SmallVM =
+
+A Kalimat program is compiled to specialized assembly code for an abstract machine called SmallVM. This assembly is then read by the SmallVM runtime and executed step by step.
+
+Notice that SmallVM cannot run Kalimat programs entirely on its own since it does not contain the needed library functions. Thinks like math functions or graphics routines are plugged in the SmallVM before execution.
+
+= Main characteristics =
+SmallVM is:
+ * *Object-oriented:* Like the JVM or the .net CLR, SmallVM assembly can define new classes, create objects, call methods...etc
+ * *Dynamically typed:* All type-checking and is done at runtime. For example an assembly program that calls a non-existent method on an object will load normally but will issue a runtime error when the code runs.
+
+= Components =
+== The call stack and operand stacks ==
+The *call stack* keeps track of all method calls. When a function is called a *stack frame* is pushed on the call stack, and when the function returns this frame is removed from the top of the stack allowing the previous function to resume.
+
+Each stack frame has:
+ * A reference to the code of the method being executed.
+ * An *instruction pointer* to identify the currently running instruction.
+ * The value of the current method's local variables.
+ * An *operand stack:* This is a stack of values that the function can use to store temporary data and perform operations on data. Also if a method is called with arguments then the values of those arguments are pushed on the method's operand stack before execution. Similarly, if method `a` calls method `b` and `b` exists with a return value, then `b`'s return value will be pushed on `a`'s operand stack after `b` has finished.
+
+== The constant pool ==
+All string constants, class definitions and method definitions are stored in a special area of memory called the VM's *constant pool*. Each constant pool entry is identified by a string key.
+
+The constant pool helps keep the VM instructions simple and is used to refer to elements of the program, for example:
+ * Instructions that use string refer to the string by it's key in the constant pool instead of writing the string directly in the assembly.
+ * The instruction to call a function refers to the function's key in the constant pool.
+ * Similarly, creating an object from a class refers to the class's key.
+ * ...etc
