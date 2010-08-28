@@ -192,10 +192,11 @@ The _arity_ and _numReturnValues_ parts are optional. If a single number is prov
 A class definition follows the following template:
 
 `.class` _name_
+    `.extends` _parentName_
 
-    `field` _fieldName1_
+    `.field` _fieldName1_
 
-    `field` _fieldName2_
+    `.field` _fieldName2_
 
     ....
 
@@ -208,3 +209,5 @@ A class definition follows the following template:
     ....
 
 `.endclass`
+
+All in-class definitions are optional.
