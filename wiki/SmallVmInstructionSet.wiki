@@ -6,6 +6,33 @@ This assembly code has elements of 3 types:
  * Class definitions
  * Method definitions (the term _method_ here means both normal functions and class member functions).
 
+Here's a sample of the assembly code, which is equivalent to the following pseudocode:
+{{{
+class point
+    has x, y
+end
+
+def main
+    p = new point
+    p.x = 5
+end
+}}}
+----
+{{{
+.class point
+    .field x
+    .field y
+.endclass
+
+.method main
+    new point
+    popl p
+    pushl p
+    pushv 5
+    setfld x
+.endmethod
+}}}
+
 = Instructions =
 An instruction is always on one line. It takes this form:
 
