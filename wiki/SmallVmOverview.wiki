@@ -29,3 +29,11 @@ The constant pool helps keep the VM instructions simple and is used to refer to 
  * The instruction to call a function refers to the function's key in the constant pool.
  * Similarly, creating an object from a class refers to the class's key.
  * ...etc
+
+== External methods ==
+A SmallVM program can use *external methods*, these are small pieces of code written in C++ that are then registered in the VM. Kalimat uses external methods for displaying text on screen, reading values from users, graphics...etc
+
+How external methods are used:
+ # Create a class that derives from `ExternalMethod` and overrides the () operator.
+ # Call `VM::Register(QString symRef, ExternalMethod *method)` and pass to it an external method object and a unique identifier for the method.
+ # A SmallVM program can now use the `callex` instruction to call the registered method.
