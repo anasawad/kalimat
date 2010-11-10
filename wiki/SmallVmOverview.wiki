@@ -4,7 +4,7 @@
 
 A Kalimat program is compiled to specialized assembly code for an abstract machine called SmallVM. This assembly is then read by the SmallVM runtime and executed step by step.
 
-Notice that SmallVM cannot run Kalimat programs entirely on its own since it does not contain the needed library functions. Thinks like math functions or graphics routines are plugged in the SmallVM before execution.
+Notice that SmallVM cannot run Kalimat programs entirely on its own since it does not contain the needed library functions. Things like math functions or graphics routines are plugged in the SmallVM before execution.
 
 = Main characteristics =
 SmallVM is:
