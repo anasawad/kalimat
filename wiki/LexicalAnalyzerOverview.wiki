@@ -4,8 +4,8 @@
 
 == Table of Classes ==
 
-    * #Class BufferState *
-    * #Class Buffer *
+    * # Class BufferState *
+    * # Class Buffer *
 
 = Details =
 
