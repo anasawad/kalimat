@@ -10,7 +10,7 @@
 
 = Details =
 
-===class BufferState === 
+===Class BufferState === 
 
     {{{
     QString buffer;//Input buffer stream.
@@ -18,7 +18,7 @@
     int col, line; //Tracks current column and Line.
     bool startOfLine;
     }}}
-===class Buffer=== 
+===Class Buffer=== 
 
     {{{
     //Data Members(same as Class BufferState)
