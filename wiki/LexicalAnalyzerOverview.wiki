@@ -2,8 +2,8 @@
 
 = Introduction =
 
-Table of Classes Explanation Numbering:
-====================================== 
+Table of Classes :
+
     1- BufferState.
     2- Buffer.
     3- ......
