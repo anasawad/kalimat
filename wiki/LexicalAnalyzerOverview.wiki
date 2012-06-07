@@ -4,9 +4,9 @@
 
 == Table of Classes ==
 
-    === 1- BufferState. ===
-    === 2- Buffer.===
-    === 3- ...... ===
+    * 1- BufferState. [WikiSyntax#Class BufferState]*
+    * 2- Buffer. *
+    * 3- ...... *
 
 = Details =
 
