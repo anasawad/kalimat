@@ -50,4 +50,26 @@
     //moveahead the pointer 'p1' to equal 'p2'
     QString acceptable();
     }}}
-    
+
+===Struct StateMachine ===
+{{{
+struct StateMachine
+
+    TransitionTable _transitions; // a transition table is a QMap<State, QVector<ConditionAndAction> >
+                                 // i.e given a State it gives us a list of "condition/action" pairs that we can use to specify
+                                // state transitions.
+    // given a current state and input, gives us the next state
+    bool Transition(State s, Buffer &_buffer, State & nextState,bool &accept, TokenType & acceptedType, Action*& action);
+    // Add: takes a current state 's', a predicate 'c', a next state 's2', flags if the state needs them, and a tokenType for the accepted token if the state is accepting.
+    void add         (State s, Predicate *c, State s2);
+    void add         (State s, Predicate *c, State s2, Action *action);
+    void addAccepting(State s, Predicate *c, State s2, TokenType accepted);
+    void addAccepting(State s, Predicate *c, State s2, TokenType accepted, Action *action);
+    // another version of add with simplified default parameters
+    QVector<Predicate *> GetPossibleTransitions(State s);
+    // are there any transitions from this state?
+    bool StateHasTests(State s);
+    // checks if the state has the 'retract' flag
+    bool  IsStateGoBack(State s);
+    bool StateHasFlag(State s,int flag); };
+}}}
