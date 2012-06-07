@@ -32,9 +32,9 @@
     bool eof(int pos)  //check if given pos 
 
     //all readAhead functions don't advance p2 Unlike read() function return 
-    the boolean value of checking if the current char at offset from current p2  
-    is equal to “c” or not or if the string ahead is equal to “s” all checks
-    are considered with an offset from p2.
+    //the boolean value of checking if the current char at offset from current
+    //p2 is equal to “c” or not or if the string ahead is equal to “s” all  
+    //checks are considered with an offset from p2.
     {
       bool readAhead(QChar c);
       bool readAhead(QChar c, int offset);
@@ -46,7 +46,7 @@
     QString accept(int &line, int &col, int &pos);
 
     //returns the QString that would've been returned by accept(),but doesn't 
-    moveahead the pointer 'p1' to equal 'p2'
+    //moveahead the pointer 'p1' to equal 'p2'
     QString acceptable();
     }}}
     
