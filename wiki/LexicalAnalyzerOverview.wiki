@@ -40,6 +40,7 @@
       bool readAhead(QChar c, int offset);
       bool readAhead(QString s);
     }
+
     QChar read(); //read current char and increment p2 pointer.
     
     //returns the QString between p1 and p2, inclusive. and sets p1 = p2.
