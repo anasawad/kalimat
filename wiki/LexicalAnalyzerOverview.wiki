@@ -1,0 +1,52 @@
+#summary A Look at Kalimat Lexical Analyzer in depth.
+
+= Introduction =
+
+Table of Classes Explanation Numbering:
+====================================== 
+    1- BufferState.
+    2- Buffer.
+    3- ......
+
+= Details =
+
+class BufferState : 
+-------------------
+    QString buffer;//Input buffer stream.
+    int p1,p2; //buffer position indices's.
+    int col, line; //Tracks current column and Line.
+    bool startOfLine;
+=========================
+class Buffer: 
+-------------
+    //Data Members(same as Class BufferState)
+    ---------------
+    QString buffer;
+    int p1,p2;
+    int col, line;
+    bool startOfLine;
+
+    //Functions
+    -----------
+    void init(QString buffer) initialize the Buffer with given String.
+    bool eof()         //check if we are already at the end of the buffer stream
+    bool eof(int pos)  //check if given pos 
+
+    //all readAhead functions don't advance p2 Unlike read() function return 
+    the boolean value of checking if the current char at offset from current p2  
+    is equal to “c” or not or if the string ahead is equal to “s” all checks
+    are considered with an offset from p2.
+    {
+      bool readAhead(QChar c);
+      bool readAhead(QChar c, int offset);
+      bool readAhead(QString s);
+    }
+    QChar read(); //read current char and increment p2 pointer.
+    
+    //returns the QString between p1 and p2, inclusive. and sets p1 = p2.
+    QString accept(int &line, int &col, int &pos);
+
+    //returns the QString that would've been returned by accept(),but doesn't 
+    moveahead the pointer 'p1' to equal 'p2'
+    QString acceptable();
+
