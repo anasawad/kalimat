@@ -2,22 +2,22 @@
 
 = Introduction =
 
-Table of Classes :
+== Table of Classes ==
 
-    1- BufferState.
-    2- Buffer.
-    3- ......
+    === 1- BufferState. ===
+    === 2- Buffer.===
+    === 3- ...... ===
 
 = Details =
 
-class BufferState : 
+===class BufferState === 
 
     QString buffer;//Input buffer stream.
     int p1,p2; //buffer position indices's.
     int col, line; //Tracks current column and Line.
     bool startOfLine;
-=========================
-class Buffer: 
+
+===class Buffer=== 
 
     //Data Members(same as Class BufferState)
     QString buffer;
