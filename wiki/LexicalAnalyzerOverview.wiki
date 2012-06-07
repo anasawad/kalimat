@@ -52,9 +52,8 @@
     }}}
 
 ===Struct StateMachine ===
-{{{
-struct StateMachine
 
+    {{{
     TransitionTable _transitions; // a transition table is a QMap<State, QVector<ConditionAndAction> >
                                  // i.e given a State it gives us a list of "condition/action" pairs that we can use to specify
                                 // state transitions.
@@ -72,4 +71,4 @@ struct StateMachine
     // checks if the state has the 'retract' flag
     bool  IsStateGoBack(State s);
     bool StateHasFlag(State s,int flag); };
-}}}
+    }}}
