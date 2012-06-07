@@ -20,12 +20,13 @@
     }}}
 ===class Buffer=== 
 
+    {{{
     //Data Members(same as Class BufferState)
     QString buffer;
     int p1,p2;
     int col, line;
     bool startOfLine;
-
+    
     //Functions
     void init(QString buffer) initialize the Buffer with given String.
     bool eof()         //check if we are already at the end of the buffer stream
@@ -48,3 +49,5 @@
     //returns the QString that would've been returned by accept(),but doesn't 
     moveahead the pointer 'p1' to equal 'p2'
     QString acceptable();
+    }}}
+    
