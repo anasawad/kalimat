@@ -12,11 +12,12 @@
 
 ===class BufferState === 
 
+    {{{
     QString buffer;//Input buffer stream.
     int p1,p2; //buffer position indices's.
     int col, line; //Tracks current column and Line.
     bool startOfLine;
-
+    }}}
 ===class Buffer=== 
 
     //Data Members(same as Class BufferState)
