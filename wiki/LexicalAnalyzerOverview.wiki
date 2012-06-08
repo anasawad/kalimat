@@ -79,7 +79,7 @@ StateMachine is the physical implementation of regular expressions state machine
     TransitionTable _transitions; 
     }}}
 
-TransitionTable is a QMap<State, QVector<ConditionAndAction> > where foreach state we define a vector of transition states according to predicates(explained latter) conditions.
+TransitionTable is a Map with States as a Key and a Vector of transition states according to predicates(explained latter) conditions.
     
     {{{
     // given a current state and input, gives us next state
