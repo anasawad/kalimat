@@ -80,9 +80,9 @@
 ===Class Token===
 
 *We have four types of Tokens*
- # *TokenNone* (given int value -1) Tokens of type 'TokenNone' are skipped during lexical analysis
- # *TokenInvalid* (given int value -2) Invalid tokens are returned by functions that return tokens when they shouldn't, for example Parser.getPos() at the end of file
- # *TokenWithNext* (-3) & *TokenWithPrev* (-4) that have similar behavior Tokens of type 'WithNext' are skipped when returning the tokenized program, but attached to the 'sister' field in the following token in the token stream the token is lost if the is no following token.
+ # *TokenNone* (given int value -1) Tokens of type 'TokenNone' are skipped during lexical analysis.
+ # *TokenInvalid* (given int value -2) Invalid tokens are returned by functions that return tokens when they shouldn't, for example Parser.getPos() at the end of file.
+ # *TokenWithNext* (-3) & *TokenWithPrev* (-4) that have similar behavior Tokens of type 'WithNext' are skipped when returning the tokenized program, but attached to the 'sister' field in the following token in the token stream the token is lost if there is no following token.
     {{{
     QString Lexeme;
     TokenType Type;
