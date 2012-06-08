@@ -38,14 +38,14 @@ The class represents the current buffer status with a set of member variables sa
     bool startOfLine;
     }}}
 
-Two signatures of the Function Eof to //check if we are already at the end of the buffer stream or if the passed position is.
+Two signatures of the Function Eof to check if we are already at the end of the buffer stream or if the passed position is.
 
     {{{
     bool eof()         
     bool eof(int pos)
     }}}
   
-All readAhead functions don't advance p2 Unlike read() function return the boolean value of checking if the current char at offset from current p2 is equal to “c” or not or if the string ahead is equal to “s” all checks are considered with an offset from p2.
+Take care that all *readAhead* functions don't advance p2 Unlike read() function return the boolean value of checking if the current char at offset from current p2 is equal to “c” or not or if the string ahead is equal to “s” all checks are considered with an offset from p2.
 
     {{{
     bool readAhead(QChar c);
@@ -83,6 +83,7 @@ Another version of accept() returns the QString that would've been returned by b
                    TokenType & acceptedType, Action*& action);
     }}}
 
+Different signatures of the add function to set a Transition state for a certain state "S" with the Predicate condition.
     {{{
     //Add: takes a current state 's', a predicate 'c', a next state 's2',
     //flags if the state needs them, and a tokenType for the accepted token 
