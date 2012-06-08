@@ -25,6 +25,7 @@
     int col, line; //Tracks current column and Line.
     bool startOfLine;
     }}}
+
 ===Class Buffer=== 
 
     {{{
@@ -115,6 +116,7 @@
     }}}
 
 ===Class UnexpectedCharException===
+
     {{{
     QVector<Predicate *> _transitions;
     QString gotThis; //un-expected char that caused the error while parsing
@@ -134,6 +136,7 @@
 ===Class TransitionTestPair===
 
 Every State holds a vector of TransitionTestPair class where when the Lexical analyzer is at state S will iterate it's vector and try each predicate of the item to check if it holds a valid transition to state S' found in the TransitionTestPair object. 
+
     {{{
 public:
     Predicate *c;
@@ -201,6 +204,7 @@ protected:
     Predicate *two_quotes;
     CharPredicate *anyChar, *nl, *noneNl;
     Predicate *sol, *eof;
+
     Action *retract;
     QMap<QString, int> keywords;
     QMap<QString, QString> arab_chars;
