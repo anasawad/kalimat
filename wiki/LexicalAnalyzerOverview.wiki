@@ -83,7 +83,7 @@
 
 ===Class Token===
 
-*We have four types of Tokens*
+*We have four types of Tokens:- *
  # *TokenNone* (given int value -1) Tokens of type 'TokenNone' are skipped during lexical analysis.
  # *TokenInvalid* (given int value -2) Invalid tokens are returned by functions that return tokens when they shouldn't, for example Parser.getPos() at the end of file.
  # *TokenWithNext* (-3) & *TokenWithPrev* (-4) that have similar behavior Tokens of type 'WithNext' are skipped when returning the tokenized program, but attached to the 'sister' field in the following token in the token stream the token is lost if there is no following token.
@@ -253,49 +253,16 @@ public:
 ===Class CharPredicate===
 
 {{{
-class CharPredicate
-
-        virtual bool operator()(QChar c)=0;
-
-class CharEquals : public CharPredicate
-{
-        QChar _c;
-public:
-        CharEquals(QChar c);
-        bool operator()(QChar c);
-};
-class CharNotEqual : public CharPredicate
-{
-        QChar _c;
-public:
-        CharNotEqual(QChar c);
-        bool operator()(QChar c);
-};
-class CharIsLetter : public CharPredicate
-{
-public:
-    bool operator()(QChar c);
-};
-class CharRange: public CharPredicate
-{
-        QChar _c1, _c2;
-public:
-        CharRange(QChar c1, QChar c2);
-        bool operator()(QChar c);
-};
-class CharOr: public CharPredicate
-{
-        CharPredicate *_a;
-        CharPredicate *_b;
-public:
-        CharOr(CharPredicate *a, CharPredicate *b);
-        bool operator()(QChar c);
-};
-class AnyChar : public CharPredicate
-{
-public:
-    AnyChar();
-    bool operator()(QChar c);
-};
-
+      //CharPredicateContaints virtual Operator that's overloaded in subclasses
+      virtual bool operator()(QChar c)=0;
 }}}
+
+*CharPredicate SubClasses :-*
+
+   # *class CharEquals* check if passed char equals it's char variable. 
+   # *class CharNotEqual* 
+   # *class CharIsLetter* check if passed char equals it's char variable.
+   # *class CharRange* check if passed char is in a given range.
+   # *class CharOr*  check if passed char equals one of two chars.
+   # *class AnyChar* accepts any char.
+ 
