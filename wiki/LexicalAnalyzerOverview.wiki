@@ -76,3 +76,32 @@
     //Check if there are any transitions
     bool StateHasTests(State s);
     }}}
+
+===Class Token===
+
+*Tokens: we have four types of Tokens*
+ #*TokenNone* (given int value -1) Tokens of type 'TokenNone' are skipped during lexical analysis
+ #*TokenInvalid* (given int value -2) Invalid tokens are returned by functions that return tokens when they shouldn't, for example Parser.getPos() at the end of file
+ #*TokenWithNext* (-3) & *TokenWithPrev* (-4) that have similar behavior Tokens of type 'WithNext' are skipped when returning the tokenized program, but attached to the 'sister' field in the following token in the token stream the token is lost if the is no following token.
+    {{{
+    QString Lexeme;
+    TokenType Type;
+    int Line, Column, Pos;
+    void *tag;
+    Token *sister;
+
+    //Constructors.
+    Token(QString lexeme, TokenType type);
+    Token(Token const &other);
+    Token();
+
+    //Boolean Operators “==” and “!=” to compare Two Tokens.
+    bool operator ==(Token &t2);
+    bool operator !=(Token &t2);
+    Token &operator = (const Token &other);
+
+    //Overloaded Function “Is” has two signatures either taking lexeme 
+    //and compare it or TokenType and checks if they are the same.
+    bool Is(QString lexeme);
+    bool Is(TokenType type);
+    }}}
