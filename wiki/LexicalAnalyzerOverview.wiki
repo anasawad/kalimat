@@ -176,8 +176,7 @@ Every State holds a vector of TransitionTestPair class where when the Lexical an
 
 ===Class Predicate===
 
-class Predicate;
-
+{{{
 Predicate *loop(Predicate *p);
 Predicate *choice(Predicate *p1, Predicate *p2);
 Predicate *seq(Predicate *p1, Predicate *p2);
@@ -249,10 +248,11 @@ public:
     ReLoop(Predicate *p);
     bool operator()(Buffer &b);
 };
-
+}}}
 
 ===Class CharPredicate===
 
+{{{
 class CharPredicate
 
         virtual bool operator()(QChar c)=0;
@@ -298,4 +298,4 @@ public:
     bool operator()(QChar c);
 };
 
-
+}}}
