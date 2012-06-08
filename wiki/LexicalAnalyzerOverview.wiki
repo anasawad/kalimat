@@ -10,7 +10,7 @@ The *StateMachine* starts at Start state and begin reading the input character t
     # *A -> null (non-final to null) :* we are at State A and we don't have any transitions on given input char the StateMachine will signals an error that we have an *UnExpectedChar Exception*.
     # *C -> null (final to null):* that means we have found an accepting token since we are already at an accepting state.
 
-
+-------------------------
 == Table of Classes ==
 
     # *Class BufferState.*
