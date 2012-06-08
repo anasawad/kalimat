@@ -106,7 +106,7 @@ Different signatures of the add function to set a Transition state for a certain
 
 ===Class Token===
 
-*We have four types of Tokens:- *
+*We have four types of Tokens: *
  # *TokenNone* (given int value -1) Tokens of type 'TokenNone' are skipped during lexical analysis.
  # *TokenInvalid* (given int value -2) Invalid tokens are returned by functions that return tokens when they shouldn't, for example Parser.getPos() at the end of file.
  # *TokenWithNext* (-3) & *TokenWithPrev* (-4) that have similar behavior Tokens of type 'WithNext' are skipped when returning the tokenized program, but attached to the 'sister' field in the following token in the token stream the token is lost if there is no following token.
@@ -132,7 +132,7 @@ When the state machine is at a non-accepting state and an unexpected char is rea
 
 ===Class TransitionTestPair===
 
-Every State holds a vector of TransitionTestPair class where when the Lexical analyzer is at state S will iterate it's vector and try each predicate of the item to check if it holds a valid transition to state S' found in the TransitionTestPair object. 
+Every State holds a vector of TransitionTestPair class where when the Lexical analyzer is at state A will iterate it's vector and try each predicate of the item to check if it holds a valid transition to state B found. 
 
     {{{
 public:
@@ -141,14 +141,6 @@ public:
     Action *action;
     bool accepting;
     TokenType acceptedType;
-
-public:
-    TransitionTestPair();
-    TransitionTestPair(Predicate *c1, State s1);
-    TransitionTestPair(Predicate *c1, State s1, TokenType _acceptedType);
-    TransitionTestPair(Predicate *c1, State s1, Action *_action);
-    TransitionTestPair(Predicate *c1, State s1, TokenType _acceptedType,
-                       Action *_action); 
     }}}
 
 ===Class Lexer===
