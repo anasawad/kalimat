@@ -121,6 +121,6 @@
                             int pos, int state, QString fileName);
     
     //Err Message = ("Unexpected char:'UnExpectedChar',FileName (Line,Column,
-                     Position) state='State', char code = Char Unicode")       
+    //               Position) state='State', char code = Char Unicode")       
     QString buildMessage();
     }}}
