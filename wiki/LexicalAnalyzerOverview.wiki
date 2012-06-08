@@ -2,7 +2,7 @@
 
 = Introduction =
 
-Kalimat Lexer is that Physically implement the FSM(Finite State Machine) Lexical Analyzer  for Tokenizing(process of recognizing the language set of characters that form a token) the input buffer according to a *TransitionTable* formed by deciding the transiton from a State A to a State B according to a *Predicate* simulating the idea of edge transition in the FSM where the current input char is the condition of transition.
+Kalimat Lexer Physically implements the FSM(Finite State Machine) Lexical Analyzer  for Tokenizing(process of recognizing the language set of characters that form a token) the input buffer according to a *TransitionTable* formed by deciding the transiton from a State A to a State B according to a *Predicate* simulating the idea of edge transition in the FSM where the current input char is the condition of transition.
 
 == Table of Classes ==
 
