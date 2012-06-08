@@ -225,15 +225,15 @@ public:
 
 ===Class CharPredicate===
 
-{{{
+    {{{
     //virtual Operator that's overloaded in subclasses
     virtual bool operator()(QChar c)=0;
-}}}
+    }}}
 
 *CharPredicate SubClasses :-*
 
    # *Class CharEquals :* check if passed char equals it's char variable. 
-   # *Class CharNotEqual .* 
+   # *Class CharNotEqual .* check if passed char not-equals it's char variable.
    # *Class CharIsLetter :* check if passed char isLetter.
    # *Class CharRange :* check if passed char is in a given range.
    # *Class CharOr :*  check if passed char equals one of two chars.
