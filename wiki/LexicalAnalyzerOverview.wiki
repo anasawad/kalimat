@@ -6,9 +6,9 @@ Kalimat Lexer Physically implements the FSM(Finite State Machine) Lexical Analyz
 
 The *StateMachine* starts at Start state and begin reading the input character to decide the next state of transition let's simulate the possible events between accepting, non-accepting states and Error cases.
 
-    # *A -> B (non-final to non-final):* the state machine keeps moving and accepting the input char.
-    # *A -> null (non-final to null) :* we are at State A and we don't have any transitions on given input char the StateMachine will signals an error that we have an *UnExpectedChar*.
-    # *C ->  null (final to null):* that means we have found an accepting token since we are already at an accepting state.
+    # *A -> B (non-final to non-final):* the state machine keeps moving and accumulating the input char.
+    # *A -> null (non-final to null) :* we are at State A and we don't have any transitions on given input char the StateMachine will signals an error that we have an *UnExpectedChar Exception*.
+    # *C -> null (final to null):* that means we have found an accepting token since we are already at an accepting state.
 
 == Table of Classes ==
 
