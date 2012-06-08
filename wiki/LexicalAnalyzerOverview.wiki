@@ -111,29 +111,15 @@ Different signatures of the add function to set a Transition state for a certain
  # *TokenInvalid* (given int value -2) Invalid tokens are returned by functions that return tokens when they shouldn't, for example Parser.getPos() at the end of file.
  # *TokenWithNext* (-3) & *TokenWithPrev* (-4) that have similar behavior Tokens of type 'WithNext' are skipped when returning the tokenized program, but attached to the 'sister' field in the following token in the token stream the token is lost if there is no following token.
 
+*Data Members:* are the lexeme of the accepted token, it's type(which are the 4-types mentioned above), line, column, the Token_Tag and it's sister.
     {{{
     QString Lexeme;
     TokenType Type;
     int Line, Column, Pos;
     void *tag;
     Token *sister;
-
-    //Constructors.
-    Token(QString lexeme, TokenType type);
-    Token(Token const &other);
-    Token();
-
-    //Boolean Operators “==” and “!=” to compare Two Tokens.
-    bool operator ==(Token &t2);
-    bool operator !=(Token &t2);
-    Token &operator = (const Token &other);
-
-    //Overloaded Function “Is” has two signatures either taking lexeme 
-    //and compare it or TokenType and checks if they are the same.
-    bool Is(QString lexeme);
-    bool Is(TokenType type);
     }}}
-
+   
 ===Class UnexpectedCharException===
 
 When the state machine is at a non-accepting state and an unexpected char is read Signal an error message with the line, position, character responsible.
