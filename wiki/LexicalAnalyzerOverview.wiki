@@ -49,7 +49,7 @@ All readAhead functions don't advance p2 Unlike read() function return the boole
     bool readAhead(QChar c);
     bool readAhead(QChar c, int offset);
     bool readAhead(QString s);
-    }}}}
+    }}}
 
     {{{
     QChar read(); //read current char and increment p2 pointer.
