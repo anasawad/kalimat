@@ -233,14 +233,14 @@ public:
     virtual bool operator()(Buffer &b)=0;
     }}}
 
-class LA
-class LAStr
-class Else
-class LineStart
-class Eof
-class ReSeq 
-class ReChoice 
-class ReLoop
+   # *Class LA :*
+   # *Class LAStr :*
+   # *Class Else :*
+   # *Class LineStart :*
+   # *Class Eof :*
+   # *Class ReSeq :* 
+   # *Class ReChoice :*
+   # *Class ReLoop :*
 
 ===Class CharPredicate===
 
