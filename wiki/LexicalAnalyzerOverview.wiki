@@ -10,6 +10,7 @@
     # *Class Token.*
     # *Class UnexpectedCharException.*
     # *Class TransitionTestPair.*
+    # *Class Lexer.*
 
 = Details =
 
@@ -145,3 +146,28 @@ Every State holds a vector of TransitionTestPair class where when the Lexical an
         TransitionTestPair(Predicate *c1, State s1, TokenType _acceptedType,
                            Action *_action); 
         }}}
+
+===Class Lexer===
+    
+    {{{
+    int state;
+    QVector<Token> acceptedTokens;
+    void *tokenTag;
+    QString fileName; // For debugging messages only
+
+    public:
+    
+    Lexer();
+    Lexer(StateMachine sm);
+    void init(QString s);
+    void init(QString s, void *tag);
+    void init(QString s, void *tag, QString fileName);
+    void tokenize(bool ignoreUnexpectedChar=false); // Runs the state machine and keeps adding accepted tokens to a vector
+    QVector<Token> getTokens(); // Returns all accepted tokens
+
+    protected:
+     
+    StateMachine stateMachine;
+    Buffer buffer;
+    virtual Token accept(TokenType);
+    }}}
