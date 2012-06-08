@@ -191,40 +191,14 @@ protected:
 
 ===Class KalimatLexer===
 
+The class is a sub-class of *Lexer* which holds all the *Predicates* needed to construct our *StateMachine* and responsible for initializing the predicates, language keywords and mapping the Token_Tag to a Name.
+
     {{{
-    //KalimatLexer inherits from Lexer
-
-    CharPredicate *digit, *arabicDigit, *europeanDigit;
-    CharPredicate *arabDecimalSeparator, *europeanDecimalSeparator;
-    CharPredicate *letter;
-    CharPredicate *idSymbol;
-    CharPredicate *plus, *minus;
-    CharPredicate *mul, *div;
-    CharPredicate *lparen, *rparen, *lbracket, *rbracket, *lbrace, *rbrace;
-    CharPredicate *dollarSign;
-    Predicate *rocket;
-    Predicate *matches, *question;
-    CharPredicate *spacer, *tab, *space;
-    Predicate *lineComment;
-    CharPredicate *addOp, *subOp, *mulOp, *divOp, *eq, *lt, *gt;
-    Predicate *le,  *ge, *ne;
-    Predicate *returnWith;
-    CharPredicate *comma, *semi, *colon, *kasra, *hash;
-    Predicate *ellipsis;
-    CharPredicate *quote;
-    Predicate *two_quotes;
-    CharPredicate *anyChar, *nl, *noneNl;
-    Predicate *sol, *eof;
-
-    Action *retract;
     QMap<QString, int> keywords;
     QMap<QString, QString> arab_chars;
-    void InitCharPredicates();
-    void InitKeywords();
     void InitArabChars();
     Token accept(TokenType);
 public:
-    KalimatLexer();
     static QMap<int, QString> tokenNameMap;
     }}}
 
