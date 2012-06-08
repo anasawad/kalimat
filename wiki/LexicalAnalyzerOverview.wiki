@@ -73,14 +73,20 @@ Another version of accept() returns the QString that would've been returned by b
 
 ===Struct StateMachine ===
 
+StateMachine is the physical implementation of regular expressions state machines, where you define a state and the possible transitions from this state to another states. If for a certain input char at a certain state you defined two possible transitions for a two unequal states the State Machine will always choose the first defined one so it Models the Finite State Machines.
+
     {{{
-    //QMap<State, QVector<ConditionAndAction>>
     TransitionTable _transitions; 
-   
+    }}}
+TransitionTable is a QMap<State, QVector<ConditionAndAction>> where foreach state we define a vector of transition states according to predicates(explained latter) conditions.
+    
+    {{{
     // given a current state and input, gives us next state
     bool Transition(State s, Buffer &_buffer, State & nextState,bool &accept,
                    TokenType & acceptedType, Action*& action);
+    }}}
 
+    {{{
     //Add: takes a current state 's', a predicate 'c', a next state 's2',
     //flags if the state needs them, and a tokenType for the accepted token 
     void add         (State s, Predicate *c, State s2);
@@ -88,12 +94,6 @@ Another version of accept() returns the QString that would've been returned by b
     void addAccepting(State s, Predicate *c, State s2, TokenType accepted);
     void addAccepting(State s, Predicate *c, State s2, TokenType accepted,
                       Action *action);
-
-    //Given a State returns all possible predicate Transition from it
-    QVector<Predicate *> GetPossibleTransitions(State s);
-
-    //Check if there are any transitions
-    bool StateHasTests(State s);
     }}}
 
 ===Class Token===
