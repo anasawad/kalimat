@@ -132,15 +132,29 @@ When the state machine is at a non-accepting state and an unexpected char is rea
 
 ===Class TransitionTestPair===
 
-Every State holds a vector of TransitionTestPair class where when the Lexical analyzer is at state A will iterate it's vector and try each predicate of the item to check if it holds a valid transition to state B found. 
+Every State holds a vector of TransitionTestPair class where when the Lexical analyzer is at state A will iterate it's vector and try each predicate of the item to check if it holds a valid transition to state B. 
 
     {{{
-public:
+    //Data Members
     Predicate *c;
     State s;
     Action *action;
     bool accepting;
     TokenType acceptedType;
+    }}}
+
+*TransitionTestPair Constructor* have more than one version.
+   # *First Constructor* sets the Action to NULL, accepting value false and acceptedType default to Zero.
+   # *Second Constructor* sets the Action value passed, accepting value false and acceptedType default to Zero.
+   # *Third Constructor* sets the Action to NULL, accepting to true since we have a passed acceptedType.
+   # *Last Constructor* sets all value passed and sets accepting to true.
+
+    {{{
+    TransitionTestPair(Predicate *c1, State s1)
+    TransitionTestPair(Predicate *c1, State s1, Action *_action)
+    TransitionTestPair(Predicate *c1, State s1, TokenType _acceptedType)
+    TransitionTestPair(Predicate *c1, State s1, TokenType _acceptedType, 
+                       Action *_action)
     }}}
 
 ===Class Lexer===
