@@ -237,15 +237,15 @@ public:
     virtual bool operator()(Buffer &b)=0;
     }}}
 
-   # *Class LA :* LookAhead if the passed char pass the Predicate Test.*
+   # *Class LA :* LookAhead if the passed char pass the Predicate Test.
    # *Class LAStr :* LookAhead a given string and return true if passed buffer
                     holds the given string.
    # *Class Else : Always returns true.*
-   # *Class LineStart : Check if the passed buffer is at the EOF state.*
-   # *Class Eof :*
+   # *Class LineStart :* Check if the passed buffer is at the start line.
+   # *Class Eof :* Check if the passed buffer is at the EOF state.
    # *Class ReSeq : Takes Set of Predicates and returns true if all of them pass* 
-   # *Class ReChoice : Takes a set of Predicates and check if any of them pass*
-   # *Class ReLoop :*
+   # *Class ReChoice :* Takes a set of Predicates and check if any of them pass.
+   # *Class ReLoop :* read on the buffer while predicate check pass. 
 
 ===Class CharPredicate===
 
