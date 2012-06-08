@@ -217,91 +217,44 @@ public:
 
 ===Class Predicate===
 
-{{{
-Predicate *loop(Predicate *p);
-Predicate *choice(Predicate *p1, Predicate *p2);
-Predicate *seq(Predicate *p1, Predicate *p2);
-Predicate *seq(Predicate *p1, Predicate *p2, Predicate *p3);
-Predicate *seq(Predicate *p1, Predicate *p2, Predicate *p3, Predicate *p4);
-Predicate *seq(Predicate *p1, Predicate *p2, Predicate *p3, Predicate *p4, Predicate *p5);
-Predicate *la(CharPredicate *p);
-Predicate *la(QChar p);
+    {{{
+    //Set of Helper Functions
+    Predicate *loop(Predicate *p);
+    Predicate *choice(Predicate *p1, Predicate *p2);
+    Predicate *seq(Predicate *p1, Predicate *p2);
+    Predicate *seq(Predicate *p1, Predicate *p2, Predicate *p3);
+    Predicate *seq(Predicate *p1, Predicate *p2, Predicate *p3, Predicate *p4);
+    Predicate *seq(Predicate *p1, Predicate *p2, Predicate *p3, Predicate *p4,
+                   Predicate *p5);
+    Predicate *la(CharPredicate *p);
+    Predicate *la(QChar p);
+    }}}
 
-class Predicate
-
+    {{{
+    //virtual Operator that's overloaded in subclasses
     virtual bool operator()(Buffer &b)=0;
+    }}}
 
-class LA : public Predicate
-{
-    CharPredicate *predicate;
-public:
-    LA(CharPredicate *pred);
-    virtual bool operator()(Buffer &b);
-};
-
-class LAStr : public Predicate
-{
-    QString str;
-public:
-    LAStr(QString s);
-    LAStr(QStdWString s);
-    virtual bool operator()(Buffer &b);
-};
-
-class Else: public Predicate
-{
-public:
-        Else();
-        bool operator()(Buffer &b);
-};
-class LineStart : public Predicate
-{
-public:
-    bool operator()(Buffer &b);
-};
-class Eof: public Predicate
-{
-public:
-        Eof();
-        bool operator()(Buffer &b);
-};
-class ReSeq : public Predicate
-{
-    int predicateCount;
-    Predicate ** predicates;
-public:
-    ReSeq(Predicate *p1, Predicate *p2);
-    bool operator()(Buffer &b);
-};
-class ReChoice : public Predicate
-{
-    int predicateCount;
-    Predicate ** predicates;
-public:
-    ReChoice(Predicate *p1, Predicate *p2);
-    bool operator()(Buffer &b);
-};
-
-class ReLoop : public Predicate
-{
-    Predicate * predicate;
-public:
-    ReLoop(Predicate *p);
-    bool operator()(Buffer &b);
-};
-}}}
+class LA
+class LAStr
+class Else
+class LineStart
+class Eof
+class ReSeq 
+class ReChoice 
+class ReLoop
 
 ===Class CharPredicate===
 
 {{{
-      //virtual Operator that's overloaded in subclasses
-      virtual bool operator()(QChar c)=0;
+    //virtual Operator that's overloaded in subclasses
+    virtual bool operator()(QChar c)=0;
 }}}
 
 *CharPredicate SubClasses :-*
 
    # *Class CharEquals :* check if passed char equals it's char variable. 
-   # *Class CharNotEqual :* 
+   # *Class CharNotEqual .* 
    # *Class CharIsLetter :* check if passed char equals it's char variable.
    # *Class CharRange :* check if passed char is in a given range.
    # *Class CharOr :*  check if passed char equals one of two chars.
