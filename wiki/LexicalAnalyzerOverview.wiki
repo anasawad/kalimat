@@ -19,6 +19,8 @@
 
 ===Class BufferState === 
 
+The class represents the current buffer status with a set of member variables same found in the Buffer Class, where it acts as a temporary variable to save the buffer status inorder to retract to an old version later.
+
     {{{
     QString buffer;//Input buffer stream.
     int p1,p2; //buffer position indices's.
