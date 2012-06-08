@@ -6,7 +6,8 @@
 
     # *Class BufferState.*
     # *Class Buffer.*
-    # *Struct StateMachine. *
+    # *Struct StateMachine.*
+    # *Class Token.*
 
 = Details =
 
