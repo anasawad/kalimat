@@ -54,16 +54,19 @@ All readAhead functions don't advance p2 Unlike read() function return the boole
     }}}
 
 Responsible to read current char and increment p2 pointer also checks if we are at a newline.
+
     {{{
     QChar read();
     }}}
     
 Returns the string between p1 and p2, inclusive. and then at last sets p1 = p2.
+
     {{{
     QString accept(int &line, int &col, int &pos);
     }}}
 
-Another version of accept() returns the QString that would've been returned by but doesn't moveahead the pointer 'p1' to equal 'p2'
+Another version of accept() returns the QString that would've been returned by but doesn't moveahead the pointer p1 to equal p2.
+
     {{{
     QString acceptable();
     }}}
