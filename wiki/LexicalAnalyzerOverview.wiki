@@ -128,17 +128,7 @@ Different signatures of the add function to set a Transition state for a certain
 
 When the state machine is at a non-accepting state and an unexpected char is read Signal an error message with the line, position, character responsible.
 
-    {{{
-    QVector<Predicate *> _transitions;
-    QString gotThis; //un-expected char that caused the error while parsing
-    int line, column, pos;
-    int state;
-    QString fileName;
-
-    UnexpectedCharException(QString _gotThis, QVector<Predicate *> 
-                            possibleTransitions, int line, int column,
-                            int pos, int state, QString fileName);
-    
+    {{{   
     //Err Message = ("Unexpected char:'UnExpectedChar',FileName (Line,Column,
     //               Position) state='State', char code = Char Unicode")       
     QString buildMessage();
