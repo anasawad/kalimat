@@ -162,7 +162,8 @@ Every State holds a vector of TransitionTestPair class where when the Lexical an
     void init(QString s);
     void init(QString s, void *tag);
     void init(QString s, void *tag, QString fileName);
-    void tokenize(bool ignoreUnexpectedChar=false); // Runs the state machine and keeps adding accepted tokens to a vector
+    // Runs the state machine and keeps adding accepted tokens to a vector
+    void tokenize(bool ignoreUnexpectedChar=false); 
     QVector<Token> getTokens(); // Returns all accepted tokens
 
     protected:
