@@ -9,6 +9,7 @@
     # *Struct StateMachine.*
     # *Class Token.*
     # *Class UnexpectedCharException.*
+    # *Class TransitionTestPair.*
 
 = Details =
 
@@ -124,3 +125,23 @@
     //               Position) state='State', char code = Char Unicode")       
     QString buildMessage();
     }}}
+
+===Class TransitionTestPair===
+
+Every State holds a vector of TransitionTestPair class where when the Lexical analyzer is at state S will iterate it's vector and try each predicate of the item to check if it holds a valid transition to state S' found in the TransitionTestPair object. 
+        {{{
+        public:
+        Predicate *c;
+        State s;
+        Action *action;
+        bool accepting;
+        TokenType acceptedType;
+
+        public:
+        TransitionTestPair();
+        TransitionTestPair(Predicate *c1, State s1);
+        TransitionTestPair(Predicate *c1, State s1, TokenType _acceptedType);
+        TransitionTestPair(Predicate *c1, State s1, Action *_action);
+        TransitionTestPair(Predicate *c1, State s1, TokenType _acceptedType,
+                           Action *_action); 
+        }}}
