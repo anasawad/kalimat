@@ -73,11 +73,7 @@ Another version of accept() returns the QString that would've been returned by b
 
 ===Struct StateMachine ===
 
-StateMachine is the physical implementation of regular expressions state machines, where you define a state and the possible transitions from this state to another states. If for a certain input char at a certain state you defined two unequal transitions for same input the State Machine will always choose the first defined one so it Models the Finite State Machines.
-
-    {{{
-    TransitionTable _transitions; 
-    }}}
+StateMachine is the physical implementation of regular expressions state machines, where you define a state and the possible transitions from this state to another states(TransitionTable). If for a certain input char at a certain state you defined two unequal transitions for same input the State Machine will always choose the first defined one so it Models the Finite State Machines.
 
 TransitionTable is a Map with States as a Key and a Vector of transition states according to predicates(explained latter) conditions.
     
