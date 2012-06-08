@@ -11,6 +11,8 @@
     # *Class UnexpectedCharException.*
     # *Class TransitionTestPair.*
     # *Class Lexer.*
+    # *Class Predicate.*
+    # *Class CharPredicate.*
 
 = Details =
 
@@ -253,16 +255,16 @@ public:
 ===Class CharPredicate===
 
 {{{
-      //CharPredicateContaints virtual Operator that's overloaded in subclasses
+      //virtual Operator that's overloaded in subclasses
       virtual bool operator()(QChar c)=0;
 }}}
 
 *CharPredicate SubClasses :-*
 
-   # *class CharEquals* check if passed char equals it's char variable. 
-   # *class CharNotEqual* 
-   # *class CharIsLetter* check if passed char equals it's char variable.
-   # *class CharRange* check if passed char is in a given range.
-   # *class CharOr*  check if passed char equals one of two chars.
-   # *class AnyChar* accepts any char.
+   # *Class CharEquals :* check if passed char equals it's char variable. 
+   # *Class CharNotEqual :* 
+   # *Class CharIsLetter :* check if passed char equals it's char variable.
+   # *Class CharRange :* check if passed char is in a given range.
+   # *Class CharOr :*  check if passed char equals one of two chars.
+   # *Class AnyChar :* accepts any char.
  
