@@ -36,22 +36,22 @@ The class represents the current buffer status with a set of member variables sa
     int p1,p2;
     int col, line;
     bool startOfLine;
-    
-    //Functions
-    void init(QString buffer) initialize the Buffer with given String.
-    bool eof()         //check if we are already at the end of the buffer stream
-    bool eof(int pos)  //check if given pos 
+    }}}
 
-    //all readAhead functions don't advance p2 Unlike read() function return 
-    //the boolean value of checking if the current char at offset from current
-    //p2 is equal to “c” or not or if the string ahead is equal to “s” all  
-    //checks are considered with an offset from p2.
-    {
-      bool readAhead(QChar c);
-      bool readAhead(QChar c, int offset);
-      bool readAhead(QString s);
-    }
+Two signatures of the Function Eof to //check if we are already at the end of the buffer stream or if the passed position is.
+    {{{
+    bool eof()         
+    bool eof(int pos)
+    }}}
+  
+All readAhead functions don't advance p2 Unlike read() function return the boolean value of checking if the current char at offset from current p2 is equal to “c” or not or if the string ahead is equal to “s” all checks are considered with an offset from p2.
+    {{{
+    bool readAhead(QChar c);
+    bool readAhead(QChar c, int offset);
+    bool readAhead(QString s);
+    }}}}
 
+    {{{
     QChar read(); //read current char and increment p2 pointer.
     
     //returns the QString between p1 and p2, inclusive. and sets p1 = p2.
