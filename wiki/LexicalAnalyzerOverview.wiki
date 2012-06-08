@@ -58,13 +58,12 @@
     //QMap<State, QVector<ConditionAndAction>>
     TransitionTable _transitions; 
    
-    // given a current state and input, gives us the next state
+    // given a current state and input, gives us next state
     bool Transition(State s, Buffer &_buffer, State & nextState,bool &accept,
                    TokenType & acceptedType, Action*& action);
 
     //Add: takes a current state 's', a predicate 'c', a next state 's2',
     //flags if the state needs them, and a tokenType for the accepted token 
-    //if the state is accepting.
     void add         (State s, Predicate *c, State s2);
     void add         (State s, Predicate *c, State s2, Action *action);
     void addAccepting(State s, Predicate *c, State s2, TokenType accepted);
