@@ -135,14 +135,14 @@
 
 Every State holds a vector of TransitionTestPair class where when the Lexical analyzer is at state S will iterate it's vector and try each predicate of the item to check if it holds a valid transition to state S' found in the TransitionTestPair object. 
     {{{
-    public:
+public:
     Predicate *c;
     State s;
     Action *action;
     bool accepting;
     TokenType acceptedType;
 
-    public:
+public:
     TransitionTestPair();
     TransitionTestPair(Predicate *c1, State s1);
     TransitionTestPair(Predicate *c1, State s1, TokenType _acceptedType);
@@ -159,8 +159,7 @@ Every State holds a vector of TransitionTestPair class where when the Lexical an
     void *tokenTag;
     QString fileName; // For debugging messages only
 
-    public:
-    
+public:    
     Lexer();
     Lexer(StateMachine sm);
     void init(QString s);
@@ -170,8 +169,7 @@ Every State holds a vector of TransitionTestPair class where when the Lexical an
     void tokenize(bool ignoreUnexpectedChar=false); 
     QVector<Token> getTokens(); // Returns all accepted tokens
 
-    protected:
-     
+protected: 
     StateMachine stateMachine;
     Buffer buffer;
     virtual Token accept(TokenType);
@@ -218,7 +216,7 @@ public:
 ===Class Predicate===
 
     {{{
-    //Set of Helper Functions
+    //Set of Helper Functions Outside Class Predicate
     Predicate *loop(Predicate *p);
     Predicate *choice(Predicate *p1, Predicate *p2);
     Predicate *seq(Predicate *p1, Predicate *p2);
@@ -255,7 +253,7 @@ class ReLoop
 
    # *Class CharEquals :* check if passed char equals it's char variable. 
    # *Class CharNotEqual .* 
-   # *Class CharIsLetter :* check if passed char equals it's char variable.
+   # *Class CharIsLetter :* check if passed char isLetter.
    # *Class CharRange :* check if passed char is in a given range.
    # *Class CharOr :*  check if passed char equals one of two chars.
    # *Class AnyChar :* accepts any char.
