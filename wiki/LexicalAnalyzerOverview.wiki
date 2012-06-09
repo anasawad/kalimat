@@ -162,7 +162,7 @@ Every State holds a vector of TransitionTestPair class where when the Lexical an
 The class holds very important function *tokenize* which is responsible for generating the token stream from the input code.
 
     {{{
-void Lexer::tokenize(bool ignoreUnexpectedChar)
+void tokenize(bool ignoreUnexpectedChar)
 
     QChar c;
     State nextState;
@@ -171,7 +171,6 @@ void Lexer::tokenize(bool ignoreUnexpectedChar)
     TokenType acceptedType;
     bool readEof = false;
 while(true)
-    
         if(buffer.eof())
             readEof = true; // schedule terminating after next loop iteration
 
