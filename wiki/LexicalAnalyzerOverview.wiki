@@ -158,27 +158,66 @@ Every State holds a vector of TransitionTestPair class where when the Lexical an
     }}}
 
 ===Class Lexer===
-    
+
+The class holds very important function *tokenize* which is responsible for generating the token stream from the input code.
+
     {{{
-    int state;
-    QVector<Token> acceptedTokens;
-    void *tokenTag;
-    QString fileName; // For debugging messages only
+void Lexer::tokenize(bool ignoreUnexpectedChar)
 
-public:    
-    Lexer();
-    Lexer(StateMachine sm);
-    void init(QString s);
-    void init(QString s, void *tag);
-    void init(QString s, void *tag, QString fileName);
-    // Runs the state machine and keeps adding accepted tokens to a vector
-    void tokenize(bool ignoreUnexpectedChar=false); 
-    QVector<Token> getTokens(); // Returns all accepted tokens
+    QChar c;
+    State nextState;
+    Action *action;
+    bool accepted;
+    TokenType acceptedType;
+    bool readEof = false;
+while(true)
+    
+        if(buffer.eof())
+            readEof = true; // schedule terminating after next loop iteration
 
-protected: 
-    StateMachine stateMachine;
-    Buffer buffer;
-    virtual Token accept(TokenType);
+        if(stateMachine.Transition(state, buffer, nextState, accepted, acceptedType, action))
+        
+            state= nextState;
+            if(action != NULL)
+                (*action)(buffer);
+        
+        else
+        
+            if(!ignoreUnexpectedChar)
+            
+                QString curChar;
+                if(buffer.eof())
+                    curChar = "<EOF>";
+                else
+                    curChar = QString("%1").arg(buffer.read());
+                throw UnexpectedCharException(curChar, stateMachine.GetPossibleTransitions(state), buffer.GetLine(), buffer.GetColumn(), buffer.GetPos(), state, fileName);
+            
+            else
+            
+                int l,c,p;
+                buffer.accept(l,c,p);
+                state = 0;
+            
+        
+
+        if(accepted)
+        
+            Token t = accept(acceptedType);
+            if(t.Type != TokenNone)
+                acceptedTokens.append(t);
+        
+
+        if(readEof)
+
+            // We cannot exit the loop whenever readEof is true, because
+            // an action might have retracted the buffer to before the EOF position
+            // therefore we also test if we are still at the EOF position before breaking
+            // the loop
+            if(buffer.eof())
+                break;
+            else
+                readEof = false;
+
     }}}
 
 ===Class KalimatLexer===
