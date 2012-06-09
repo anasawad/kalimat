@@ -183,12 +183,19 @@ protected:
 
 ===Class KalimatLexer===
 
-The class is a sub-class of *Lexer* which holds all the *Predicates* needed to construct our *StateMachine* and responsible for initializing the predicates, language keywords and mapping the Token_Tag to a Name.
+The class is a sub-class of *Lexer* which holds all the *Predicates* and *CharPredicates* that are needed to recognize language tokens in our *StateMachine*. 
 
+
+it's also responsible for initializing the language keywords and arabic chars by reading text files and saving them to a QMap to retrieve the id of the keyword latter or save name of certain special arabic chars.
     {{{
-    QMap<QString, int> keywords;
-    QMap<QString, QString> arab_chars;
-    void InitArabChars();
+    // reads the text file "keywords.txt"
+    void KalimatLexer::InitKeywords()
+
+    // reads the text file "arab_char.txt"
+    void KalimatLexer::InitArabChars()
+    }}}
+ 
+    {{{
     Token accept(TokenType);
 public:
     static QMap<int, QString> tokenNameMap;
