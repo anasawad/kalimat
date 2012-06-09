@@ -187,7 +187,7 @@ The case when we don't ignore *UnExpected Character* in the stream it throws an 
 
     {{{ 
     if(!ignoreUnexpectedChar)
-            
+    {       
        QString curChar;
        if(buffer.eof())
            curChar = "<EOF>";
@@ -196,6 +196,7 @@ The case when we don't ignore *UnExpected Character* in the stream it throws an 
            curChar = QString("%1").arg(buffer.read());
            throw UnexpectedCharException(curChar, stateMachine.GetPossibleTransitions(state), buffer.GetLine(), buffer.GetColumn(), buffer.GetPos(), state, fileName);
        }
+     }
      }}}
      
 
