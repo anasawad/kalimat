@@ -209,26 +209,30 @@ If we Accept ignoring invalid Tokens we will force the buffer to ignore the curr
     }
     }}}
 
+Then we add our accepted token to the Vector of acceptedTokens.
+ 
+   {{{ 
+    if(accepted)
+    {
+       Token t = accept(acceptedType);
+       if(t.Type != TokenNone)
+          acceptedTokens.append(t);
+    } 
+    }}}
 
-    {{{ 
-        if(accepted)
-        
-            Token t = accept(acceptedType);
-            if(t.Type != TokenNone)
-                acceptedTokens.append(t);
-        
-
-        if(readEof)
-
-            // We cannot exit the loop whenever readEof is true, because
-            // an action might have retracted the buffer to before the EOF position
-            // therefore we also test if we are still at the EOF position before breaking
-            // the loop
-            if(buffer.eof())
-                break;
-            else
-                readEof = false;
-
+A crucial step here is 
+    {{{
+    if(readEof)
+    {
+    // We cannot exit the loop whenever readEof is true, because
+    // an action might have retracted the buffer to before the EOF position
+    // therefore we also test if we are still at the EOF position before breaking the loop
+       
+      if(buffer.eof())
+         break;
+      else
+         readEof = false;
+    }
     }}}
 
 ===Class KalimatLexer===
