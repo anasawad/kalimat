@@ -177,6 +177,9 @@ We call the state machine sending current state and buffer and returning a succe
             if(action != NULL)
                 (*action)(buffer);
          }
+     ....
+     ....
+     ....
     }
     }}}
 
