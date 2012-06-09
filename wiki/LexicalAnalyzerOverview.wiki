@@ -2,13 +2,13 @@
 
 = Introduction =
 
-Kalimat Lexer Physically implements the FSM(Finite State Machine) Lexical Analyzer  for Tokenizing(process of recognizing the language set of characters that form a token) the input buffer according to a *TransitionTable* formed by deciding the transiton from a State A to a State B according to a *Predicate* simulating the idea of edge transition in the FSM where the current input char is the condition of transition.
+Kalimat Lexer Physically implements the FSM(Finite State Machine) Lexical Analyzer for Tokenizing(process of recognizing the language set of characters that form a token) the input buffer according to a *TransitionTable* formed by deciding the transiton from a State A to a State B according to a *Predicate* simulating the idea of edge transition in the FSM where the current input char is the condition of transition.
 
-The *StateMachine* starts at Start state and begin reading the input character to decide the next state of transition let's simulate the possible events between accepting, non-accepting states and Error cases.
+The *StateMachine* starts at Start state and begin reading the input character to decide the next state of transition let's simulate the possible events between accepting, non-accepting and error states.
 
     # *A -> B (non-final to non-final):* the state machine keeps moving and accumulating the input char.
     # *A -> null (non-final to null) :* we are at State A and we don't have any transitions on given input char the StateMachine will signals an error that we have an *UnExpectedChar Exception*.
-    # *C -> null (final to null):* that means we have found an accepting token since we are already at an accepting state.
+    # *C -> null (final to null):* that means we have found an accepting token since we are already at an accepting state and the input char isn't needed anymore.
 
 ----
 == Table of Classes ==
@@ -196,24 +196,14 @@ public:
 
 ===Class Predicate===
 
-    {{{
-    //Set of Helper Functions Outside Class Predicate
-    Predicate *loop(Predicate *p);
-    Predicate *choice(Predicate *p1, Predicate *p2);
-    Predicate *seq(Predicate *p1, Predicate *p2);
-    Predicate *seq(Predicate *p1, Predicate *p2, Predicate *p3);
-    Predicate *seq(Predicate *p1, Predicate *p2, Predicate *p3, Predicate *p4);
-    Predicate *seq(Predicate *p1, Predicate *p2, Predicate *p3, Predicate *p4,
-                   Predicate *p5);
-    Predicate *la(CharPredicate *p);
-    Predicate *la(QChar p);
-    }}}
+The class holds a *virtual operator()* that's given the buffer as an input it tries to test certain conditions of accepting and then returning a true or false defining the acceptance or failure of matching.
 
     {{{
     //virtual Operator that's overloaded in subclasses
     virtual bool operator()(Buffer &b)=0;
     }}}
 
+The set of sub-classes from *class Predicate* overrides the definition of the *operator() * to recognize certain conditions:
    # *Class LA :* LookAhead if the passed char pass the Predicate Test.
    # *Class LAStr :* LookAhead a given string and return true if passed buffer holds the given string.
    # *Class Else :* Always returns true.
