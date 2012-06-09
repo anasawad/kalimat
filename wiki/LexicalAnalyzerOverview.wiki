@@ -161,43 +161,45 @@ Every State holds a vector of TransitionTestPair class where when the Lexical an
 
 The class holds very important function *tokenize* which is responsible for generating the token stream from the input code.
 
-    {{{
-void tokenize(bool ignoreUnexpectedChar)
+First the function enters an infinite loop which is terminated iff(if and only if) we are at the end of the buffer or we have an UnExpectedChar and we don't ignore UnExpectedChar which will throw an Exception message.
 
-    QChar c;
-    State nextState;
-    Action *action;
-    bool accepted;
-    TokenType acceptedType;
-    bool readEof = false;
-while(true)
+We call the state machine sending current state and buffer and returning a success Transition with a next state and action to be done on the buffer stream like we have read an extra character which need to be retracted.
+
+    {{{
+    while(true)
+    {
         if(buffer.eof())
             readEof = true; // schedule terminating after next loop iteration
 
         if(stateMachine.Transition(state, buffer, nextState, accepted, acceptedType, action))
-        
+        {
             state= nextState;
             if(action != NULL)
                 (*action)(buffer);
-        
-        else
-        
-            if(!ignoreUnexpectedChar)
+         }
+    }
+    }}}
+
+The case when we don't ignore *UnExpected Character* in the stream it throws an Exception object of *Class UnexpectedCharException*.
+
+    {{{ 
+    if(!ignoreUnexpectedChar)
             
-                QString curChar;
-                if(buffer.eof())
-                    curChar = "<EOF>";
-                else
-                    curChar = QString("%1").arg(buffer.read());
-                throw UnexpectedCharException(curChar, stateMachine.GetPossibleTransitions(state), buffer.GetLine(), buffer.GetColumn(), buffer.GetPos(), state, fileName);
-            
-            else
-            
-                int l,c,p;
-                buffer.accept(l,c,p);
-                state = 0;
-            
-        
+       QString curChar;
+       if(buffer.eof())
+           curChar = "<EOF>";
+       else
+       {
+           curChar = QString("%1").arg(buffer.read());
+           throw UnexpectedCharException(curChar, stateMachine.GetPossibleTransitions(state), buffer.GetLine(), buffer.GetColumn(), buffer.GetPos(), state, fileName);
+       }
+     }}}
+     
+
+     {{{            
+     int l,c,p;
+     buffer.accept(l,c,p);
+     state = 0;   
 
         if(accepted)
         
