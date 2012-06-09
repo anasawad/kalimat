@@ -220,7 +220,8 @@ Then we add our accepted token to the Vector of acceptedTokens.
     } 
     }}}
 
-A crucial step here is 
+A crucial step here is checking when we have to exit from the while loop. why? because the action received by the *StateMachine* may force the buffer to retract backward making a false-positive that we are at the EOF.
+
     {{{
     if(readEof)
     {
