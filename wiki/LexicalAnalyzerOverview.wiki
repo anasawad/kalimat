@@ -183,28 +183,34 @@ We call the state machine sending current state and buffer and returning a succe
     }
     }}}
 
-The case when we don't ignore *UnExpected Character* in the stream it throws an Exception object of *Class UnexpectedCharException*.
+The else in case of *Failure Transition* when we don't ignore *UnExpected Character* in the stream it throws an Exception object of *Class UnexpectedCharException*.
+
+If we Accept ignoring invalid Tokens we will force the buffer to ignore the current failure incomplete Token by calling accept which will move the reading pointer ahead the current failure and set State back to starting state 0.
 
     {{{ 
-    if(!ignoreUnexpectedChar)
-    {       
-       QString curChar;
-       if(buffer.eof())
+    else
+    {
+        if(!ignoreUnexpectedChar)
+        {       
+           QString curChar;
+           if(buffer.eof())
            curChar = "<EOF>";
+           else
+           {
+               curChar = QString("%1").arg(buffer.read());
+               throw UnexpectedCharException(curChar, stateMachine.GetPossibleTransitions(state), buffer.GetLine(), buffer.GetColumn(), buffer.GetPos(), state, fileName);
+           }
+         }
        else
        {
-           curChar = QString("%1").arg(buffer.read());
-           throw UnexpectedCharException(curChar, stateMachine.GetPossibleTransitions(state), buffer.GetLine(), buffer.GetColumn(), buffer.GetPos(), state, fileName);
-       }
-     }
-     }}}
-     
+          buffer.accept(l,c,p);
+          state = 0;  
+       } 
+    }
+    }}}
 
-     {{{            
-     int l,c,p;
-     buffer.accept(l,c,p);
-     state = 0;   
 
+    {{{ 
         if(accepted)
         
             Token t = accept(acceptedType);
