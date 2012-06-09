@@ -215,13 +215,13 @@ The set of sub-classes from *class Predicate* overrides the definition of the *o
 
 ===Class CharPredicate===
 
+The class holds a *virtual operator()* that's given a char argument it checks a certain condition with it's data member variable and then returns a true or false defining condition matching:
     {{{
     //virtual Operator that's overloaded in subclasses
     virtual bool operator()(QChar c)=0;
     }}}
 
-*CharPredicate SubClasses :-*
-
+the set of sub-classes derivd from *class CharPredicate* wich overload the *operator()* to check certain conditions on the argument char and the member one:
    # *Class CharEquals :* check if passed char equals it's char variable. 
    # *Class CharNotEqual .* check if passed char not-equals it's char variable.
    # *Class CharIsLetter :* check if passed char isLetter.
