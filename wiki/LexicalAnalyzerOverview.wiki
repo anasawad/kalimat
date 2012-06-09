@@ -188,14 +188,10 @@ protected:
 
     {{{
     // reads the text file "keywords.txt"
-    void KalimatLexer::InitKeywords()
+    void InitKeywords()
 
     // reads the text file "arab_char.txt"
-    void KalimatLexer::InitArabChars()
-    }}}
- 
-    {{{
-    Token accept(TokenType);
+    void InitArabChars()
     }}}
 
 ===Class Predicate===
