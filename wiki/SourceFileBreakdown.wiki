@@ -17,6 +17,6 @@ Lexical Analyzer classes defined in Lexer file.
  # *Token.h/.cpp* :  stores a token's lexeme (the text of the token), it's line, column, and position (i.e index of first character from the program's beginning) and token type (whether it's a string, number, operator, and so on). A constant for each token type is in KalimatLexer.h.
  # *statemachine.h/.cpp* : physical implementation of regular expressions state machines, where you define a state and the possible transitions to another states(TransitionTable).
  # *Lexer.h/.cpp* : holds logic needed to manage working with the input stream and the statemachine to return accepted tokens or flag un-recognized tokens.
- # *Kalimatlexer.h/.cpp* : defines needed *CharPredicates* and *Predicates* needed by the language statemachine in recognizing the input buffer stream into tokens.
+ # *Kalimatlexer.h/.cpp* : defines *CharPredicates* and *Predicates* needed by the Kalimat language statemachine in recognizing the input buffer stream into tokens.
 
 = SmallVM subproject (virtual machine and runtime) =
