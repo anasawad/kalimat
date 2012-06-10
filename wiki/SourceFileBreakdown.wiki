@@ -9,7 +9,7 @@ The IDE files are in the project root directory, each .h/.cpp pair is as follows
  * *LineNumberArea.h/cpp* and *LineTracker.h/cpp* Utility classes for MyEdit
  * *MainWindow.h/cpp* The main IDE, with code to drive editing, compilation, debugging, and running of programs.
 
-Lexical Analyzer classes defined in Lexer file:
+Lexical Analyzer classes defined in Lexer file.
  # *state.h* : defines an alias naming instead of typing states as integer typed.
  # *action.h/.cpp* : defines set of subclasses of class action which are called on the buffer to *Retract* for example.
  # *buffer.h/.cpp* : defines two classes *Buffer* which holds the main logic of moving inside the buffer ,line counting, column counting, returning current characters, moving forward or retracting inside the buffer stream. *BufferState*(which main purpose is saving the Buffer State of member variables acting as an efficient memory temporary variable for any object of class *Buffer*).
