@@ -5,14 +5,17 @@
 The lexical analyzer is responsible for dividing Kalimat code into tokens, for example the program "اطبع 12+13" would be divided into:
 
 اطبع
+
 12
+
 +
+
 13
 
 Each of those are stored in the *Token* class, which stores a token's _lexeme_ (the text of the token), it's line, column, and position (i.e index if first character from the program's beginning) and _token type_, whether it's a string, number, operator, and so on. A constant for each token type is in KalimatLexer.h
 
 The input is given to the helper class Buffer, who takes several responsibilities:
- * Keeping track of what characters have been read so far.
+ * Keeping track of what characters have been read so far, and the position information of the current read characters.
  * Keeping track of the set of characters that could be considered a token, by keeping two indexes: p1 is the position after the last successfully accepted token, and p2 is the position of the last character we read but not accepted; a character that's a candidate for being in the current token.
 
 The lexer scans the input character by character, and keeps an internal state (e.g I'm now reading an integer literal, I'm now at the start of a keyword). The lexer changes state according to the input character according to *transition rules*.
