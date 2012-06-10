@@ -1,0 +1,12 @@
+#summary What each source directory or file means
+
+= Kalimat subproject (IDE and compiler) =
+
+The IDE files are in the project root directory, each .h/.cpp pair is as follows.
+
+ * *MyEdit.h/cpp* A class derived from QTextEdit with special behavior for Kalimat code; for example indentation or completing keywords.
+ * *DocumentContainer.h/cpp* Code to maintain the list of currently open code documents: file name, modified state, which tab control they're attached to, ...etc
+ * *LineNumberArea.h/cpp* and *LineTracker.h/cpp* Utility classes for MyEdit
+ * *MainWindow.h/cpp* The main IDE, with code to drive editing, compilation, debugging, and running of programs.
+
+= SmallVM subproject (virtual machine and runtime) =
