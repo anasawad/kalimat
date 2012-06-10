@@ -1,5 +1,5 @@
+#summary The major components of Kalimat
 #labels Featured,Phase-Design
-# The major components of Kalimat
 
 Kalimat is basically four software components:
  * SmallVM, a virtual machine that takes specified instructions (add two numbers, call a function...) and runs them. Also does bookkeeping like memory management.
