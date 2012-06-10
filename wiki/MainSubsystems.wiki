@@ -1,0 +1,12 @@
+#labels Featured,Phase-Design
+#The major components of Kalimat
+
+Kalimat is basically four software components:
+ * SmallVM, a virtual machine that takes specified instructions (add two numbers, call a function...) and runs them. Also does bookkeeping like memory management.
+ * The _runtime_, a set of functions for doing common tasks like drawing on the screens, file handling, or math routines.
+ * The compiler, which takes a Kalimat program and translates it to SmallVM instructions, with additional information like "which part of the code generated this instruction" for debugging.
+ * The IDE, allowing the user to edit, debug and run programs.
+
+SmallVM and the runtime are a separate project in the Qt Creator workspace called *SmallVM*, while the IDE and compiler are in the subproject *Kalimat*. SmallVM is designed to be a reusable module, all Kalimat-specific functionality should be outside of SmallVM.
+
+SmallVM can be used in two ways: embedded into Kalimat as a set of source files, or in a DLL. The DLL feature is utilized by .exe files that Kalimat generates: they use smallvm.dll to execute themselves without having a Kalimat IDE/compiler nearby.
