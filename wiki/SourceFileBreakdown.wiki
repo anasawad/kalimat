@@ -16,7 +16,7 @@ Lexical Analyzer classes defined in Lexer file.
  # *CharPredicate.h/,cpp* : defines two classes *CharPredicate* which main cause is to define *virtual void operator()* which is re-defined by it's sub-classes to check if class member Char variable(s) is *Equal* or *!Equal* or *inRange* or *Equal_CharA_or_CharB* (each checking condition is defined by a sub-class) with the passed argument or not. *Predicate* works on the level of buffer stream where it checks of satisfying a CharPredicate on the buffer-stream or a set of *Predicates* where each one of them holds a *CharPredicate* in-order to efficiently create possible combinations checking. 
  # *Token.h/.cpp* :  stores a token's lexeme (the text of the token), it's line, column, and position (i.e index of first character from the program's beginning) and token type (whether it's a string, number, operator, and so on). A constant for each token type is in KalimatLexer.h.
  # *statemachine.h/.cpp* : physical implementation of regular expressions state machines, where you define a state and the possible transitions to another states(TransitionTable).
- # *Lexer.h/.cpp* :
- # *Kalimatlexer.h/.cpp* :
+ # *Lexer.h/.cpp* : holds logic needed to manage working with the input stream and the statemachine to return accepted tokens or flag un-recognized tokens.
+ # *Kalimatlexer.h/.cpp* : defines needed *CharPredicates* and *Predicates* needed by the language statemachine in recognizing the input buffer stream into tokens.
 
 = SmallVM subproject (virtual machine and runtime) =
