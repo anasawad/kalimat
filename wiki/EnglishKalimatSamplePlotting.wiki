@@ -1,0 +1,157 @@
+#A function-plotting application to demonstrate the built-in parser generator
+
+{{{
+instructions()
+
+repeat :
+    clearText()
+    read "Function?", f
+    f = replace(f, " "، "")
+    tree = arithmeticExpression(f)
+    while tree = nothing:
+        print "Error in function"
+        read "Function?", f 
+        f = replace(f, " ", "")
+        tree = arithmeticExpression(f)
+    loop
+    read "from?", a 
+    read "to?", b 
+
+    if trim(a) = "":
+        a = - 8 
+    else:
+        a = toNum(a)
+    done 
+
+    if trim(b) = "":
+        b = 8 
+    else:
+        b = toNum(b)
+    done 
+
+    cls()
+    drawFunction(tree, a, b)
+loop
+
+proc drawFunction(expression, fromX, toX):
+    x = fromX
+    oldX = nothing
+    oldY = nothing
+    xScale = 20 
+    yScale = 15 
+    drawLine(400، 0)-(400، 599)
+    drawLine(0، 300) -(799، 300)
+
+    while not x > toX :
+        y = eval(expression, x)
+
+        if not oldX = nothing:
+            x1 = x * xScale + 400
+            y1 = -y * yScale + 300 
+            x2 = oldX * xScale + 400 
+            y2 = -oldY * yScale + 300 
+            drawLine(x1,  y1)-(x2, y2), 4 
+        done 
+
+        oldX = x 
+        oldY = y
+        x = x + 0.1 
+        wait(30)
+    loop 
+end 
+
+func eval(tree, x):
+    if tree ~ ["+", ?a, ?b]:
+        return eval(a,x) + eval(b, x)
+    else if tree ~ ["-", ?a, ?b]:
+        return eval(a, x) - eval(b, x)
+    else if tree ~ ["*", ?a, ?b]:
+        return eval(a, x) * eval(b, x)
+    else if tree ~ ["/", ?a, ?b]:
+        d = eval(b, x)
+        if d <> 0:
+            return eval(a, x) / d
+        else:
+            return 0
+        done
+    else if tree ~ ["^", ?a, ?b]:
+        return pow(eval(a, x), eval(b, x))
+    else if tree ~ ["sin", ?a]:
+        return sin(eval(a, x))
+    else if tree ~ ["cos", ?a]:
+        return cos(eval(a, x))
+    else if tree ~ ["tan", ?a]:
+        return tan(eval(a, x))
+    else if tree ~ ["log", ?a]:
+        return log(eval(a, x))
+    else if tree ~ ["sqrt", ?a]:
+        return sqrt(eval(a, x))
+        
+    else if tree ~"x":
+        return x
+    else if tree ~ "pi":
+        return 3.14159
+    else if tree ~ "e":
+        return 2.71828183 
+    else:
+-- it's a number
+        return tree
+    done 
+end
+
+-- The grammar for arithmetic expressions
+-- We have a problem with expressions like 4-5-6,  because the expression is
+-- left associative but the parser will give a right associative tree
+-- i.e will evaluate 4-(5-6) when the correct answer is (4-5)-6
+-- this is due to problems with left recusion handling, a feature not currently
+-- implemented in Kalimat
+rules arithmeticExpression:
+    additiveExpression = multiplicativeExpression:a "+" additiveExpression:b => ["+", a, b]
+  or multiplicativeExpression :a "-" additiveExpression:b => ["-", a, b]
+    or multiplicativeExpression
+    
+    multiplicativeExpression = exponentExpression:a "*" multiplicativeExpression:b => ["*", a, b ]
+    or exponentExpression:a "/" multiplicativeExpression:b => ["/", a, b]
+    or exponentExpression
+    
+    exponentExpression = primaryExpression:a  "^" exponentExpression:b => ["^", a, b]
+    or "-" primaryExpression :a => ["-", 0, a]
+    or primaryExpression 
+    primaryExpression = number :a =>toNum(a)
+    or funcName :f "("additiveExpression :e ")" => [f, e]
+    or "x"
+    or "pi"
+    or "e"
+    or "(" additiveExpression:a ")" => a 
+
+    funcName = "sin"
+    or "cos"
+    or "tan"
+    or "log"
+    or "sqrt"
+    
+
+    number = digit:a number:b => a + b 
+    or digit
+
+    digit = from "0" to "9"
+end 
+
+proc instructions():
+    setCursorPos(3, 10)
+    print "--- The function plotter ---"
+    setCursorPos(5, 0)
+    print " Write a function (in the variable x) and choose"
+    print " start/end values for x"
+    print " [or press ENTER to use defaults]"
+    print ""
+    print " You can use + - / * ^, and parentheses"
+    print " Available functions: sin, cos, tan, sqrt, log"
+    print ""
+    print " The constants pi and e are also available"
+    print ""
+    print ""
+    print " To continue press ENTER"
+    read a 
+end
+}}}
