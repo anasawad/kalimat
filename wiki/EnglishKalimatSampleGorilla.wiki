@@ -1,0 +1,239 @@
+# A remake of the classic QBasic game Gorilla.bas
+{{{
+﻿class Gorilla:
+    has x, y 
+    has name, sprite
+    has atRight
+    responds to draw(), hide()
+    responds to setYToBuildings()
+end 
+
+class Building:
+    has left, right, top, bottom
+    replies to contains(banana)
+end
+
+class Banana:
+    has x, y 
+    has speed
+    has sprite1,  sprite2
+    responds to swapSprites(), draw(), throwFrom(gorilla, velocity), explode(), hide()
+    replies to inAir(), hitBuilding()
+end
+
+func makeGorilla(name, x, y, imageFile, atRight):
+    g = new Gorilla having name = name, x = x, y = y, sprite = loadSprite(imageFile), atRight = atRight
+    return g
+end
+
+reply Building b to contains(banana):
+    if spriteRight(sprite1 banana) < left b:
+        return false
+    else if spriteLeft(sprite1 banana) > right b :
+        return false
+    else if spriteBottom(sprite1 banana) < top b:
+        return false
+    else if spriteTop(sprite1 banana) > bottom b:
+        return false
+    else:
+        return true
+    done
+end
+
+response Gorilla g to draw():
+    drawSprite sprite g in(x g, y g)
+end
+response Gorilla g to hide():
+    hideSprite(sprite g)
+end
+
+func makeBanana(imageFile1, imageFile2):
+    b = new Banana
+    sprite1 b = loadSprite(imageFile1)
+    sprite2 b = loadSprite(imageFile2)
+    return b
+end
+
+response Gorilla g to setYToBuildings():
+    repeat:
+        g: draw()
+        bottom = spriteBottom(sprite g)
+
+        if bottom + 5 > 479 :
+            goto weAreFinished
+        done
+
+        if rectIntersectsBuilding(x g, bottom - 3, x g + spriteWidth(sprite g), bottom + 3):
+            goto weAreFinished
+        done
+
+        y g = y g + 5 
+    loop 
+
+    label weAreFinished
+end 
+
+response Banana b to swapSprites():
+    temp = sprite1 b 
+    sprite1 b = sprite2 b 
+    sprite2 b = temp
+end 
+
+response Banana b to draw():
+    hideSprite(sprite2 b)
+    showSprite(sprite1 b)
+    drawSprite sprite1 b in(x b, y b)
+end 
+
+reply Banana b to hitBuilding():
+    x1 = x b - 3 
+    y1 = y b - 3 
+    x2 = x b + 3 
+    y2 = y b + 3 
+    return rectIntersectsBuilding(x1,  y1, x2,  y2)
+end 
+
+func rectIntersectsBuilding(x1,  y1, x2, y2):
+    for a=x1 to x2:
+        for b= y1 to y2:
+            if pixelAt(a, b) <> 15:
+                return true 
+            done 
+        loop 
+    loop 
+
+    return false 
+end 
+
+response Banana b to hide():
+    hideSprite(sprite1 b)
+    hideSprite(sprite2 b)
+end 
+
+response Banana b to explode():
+    for i=1 to 5:
+        drawCircle(x b, y b), i * 10, i, true
+        wait(70)
+    loop 
+
+    hideSprite(sprite1 b)
+    hideSprite(sprite2 b)
+    drawCircle(x b, y b), 50, 15, true
+end 
+
+response Banana b to throwFrom(gorilla, velocity):
+    x b = x gorilla 
+    y b = y gorilla
+    b: draw()
+    time = 0 
+    gravity = 5 
+
+    while b:inAir() and not endOfGame:
+        xDiff = x velocity * time
+
+        if not atRight gorilla:
+            xDiff = - xDiff 
+        done
+
+        yDiff = y velocity * time - 0.5 * gravity * time * time
+        x b = x b + xDiff 
+        y b = y b - yDiff 
+        time = time + 0.2 
+        b: draw()
+        b: swapSprites()
+
+        if b:hitBuilding():
+            b: explode()
+            goto endOfJourney
+        done 
+
+        wait(150)
+    loop 
+
+    label endOfJourney
+end 
+
+reply Banana b to inAir():
+    if x b > 0 and x b < 800 and y b < 600 :
+        return true
+    else:
+        return false
+    done
+end
+
+class Vector:
+    has x, y
+end
+
+func readVelocity(gorilla):
+    clearText()
+    print name gorilla
+    read "Angle?", #a 
+    a = a * 3.14159 / 180 
+    read "Veclocity?", #v 
+    v = v / 5 
+    r = new Vector
+    x r = v * cos(a)
+    y r = v × sin(a)
+    return r
+end
+
+proc drawBuildings():
+    a = []
+    right = 0 
+    width = 50 + random(150)
+    height = 80 + random(120)
+    bottom = 599 
+    Done = false
+
+    while not Done:
+        drawRect(right, bottom - height)-(right + width, bottom), random(14), true
+        right = right + width
+        width = random(200)
+        height = random(150) + 150 
+        if right > 800 :Done = true
+    loop 
+end
+
+currentPlayer shared
+otherPlayer shared
+endOfGame shared
+label gameStartRoutine
+endOfGame = false 
+at event collision do bananaHit
+cls()
+drawBuildings()
+banana = makeBanana("images/banana1.bmp"، "images/banana2.bmp")
+g1 = makeGorilla("Koko", 50 + random(200), 150, "images/koko.bmp", true)
+g2 = makeGorilla("Toto", 750 - random(200), 150, "images/toto.bmp", false)
+currentPlayer = g1 
+otherPlayer = g2 
+g1 : setYToBuildings()
+g2 : setYToBuildings()
+g1 : draw()
+g2 : draw()
+
+while not endOfGame:
+    velocity = readVelocity(currentPlayer)
+    banana :throwFrom(currentPlayer, velocity)
+    temp = currentPlayer
+    currentPlayer = otherPlayer
+    otherPlayer = temp
+loop 
+
+setCursorPos(11, 21)
+print "(press ENTER to start again)"
+read dummyVar
+g1: hide()
+g2: hide()
+banana: hide()
+goto gameStartRoutine 
+
+proc bananaHit(s1, s2):
+    if not endOfGame and (s1 = sprite otherPlayer or s2 = sprite otherPlayer):
+        setCursorPos(10, 20)
+        print name currentPlayer, " has won!"
+        endOfGame = true
+    done 
+end 
+}}}
